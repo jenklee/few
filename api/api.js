@@ -13,6 +13,16 @@ exports.members = function(db){
 
 exports.addmember = function(db) {
   return function(req, res) {
+	var now = new Date();
+	/*var new_member = extend({
+		joined: now
+	}, req.body);
+	console.log(new_member);
+	*/
+	console.log({
+		joined: now
+	});
+	
     db.collection('members').insert(req.body, function(err, result){
 		if(err) {
 			res.send({ msg: err });

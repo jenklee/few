@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
+var extend = require('node.extend');
 var api = require('./api/api');
 
 // Start prod db

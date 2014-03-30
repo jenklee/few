@@ -29,17 +29,17 @@ directive('appVersion', ['version', function(version) {
 		}
 	}
 }])
-.directive('googleMap', [function () {
+.directive('googleMap', ["$location", function ($location) {
 	return {
 		restrict: 'A',
 		transclude: true,
 		link: function (scope, elem, attrs) {
 			
-		    var defaultLatlng = new google.maps.LatLng(0, 0);
+		    var defaultLatlng = new google.maps.LatLng(27.0000, 17.0000);
 		    var mapOptions = {
-		        zoom: 2,
+		        zoom: 3,
 		        center: defaultLatlng,
-		        scrollwheel: false,
+		        /*scrollwheel: false,
 		        disableDoubleClickZoom: true,
 		        keyboardShortcuts: false,
 		        mapMaker: false,
@@ -50,34 +50,105 @@ directive('appVersion', ['version', function(version) {
 		        scaleControl: false,
 		        streetViewControl: false,
 		        zoomControl: false,
-		        draggable: false,
+		        draggable: false,*/
+			    mapTypeControl: false,
+			    mapTypeControlOptions: {
+			        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
+			    panControl: true,
+			    panControlOptions: {
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
+			    zoomControl: true,
+			    zoomControlOptions: {
+			        style: google.maps.ZoomControlStyle.MEDIUM,
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
+			    scaleControl: true,
+			    scaleControlOptions: {
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
+			    streetViewControl: false,
+			    streetViewControlOptions: {
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
+			    rotateControl: true,
+			    rotateControlOptions: {
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
+			    navigationControl: true,
+			    navigationControlOptions: {
+			        position: google.maps.ControlPosition.LEFT_CENTER
+			    },
 		        mapTypeId: google.maps.MapTypeId.ROADMAP
 		    };
 
     		scope.map = new google.maps.Map(elem[0], mapOptions);
 			
-			scope.addPinForMember = function(member) {
+			scope.addPinForMember = function(member, shouldHighlight, isNewMember) {
+								
 				var currentLocation = new google.maps.LatLng(member.place.geometry.location.lat, member.place.geometry.location.lng);
+				var address = (member.place.vicinity !== undefined)? member.place.vicinity : member.place.name;
+				
+				var pinColor = "8C92FF";
+			    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+			        new google.maps.Size(21, 34),
+			        new google.maps.Point(0,0),
+			        new google.maps.Point(10, 34));
+			
 				var marker = new google.maps.Marker({
 	                position: currentLocation,
 	                map: scope.map,
-	                title: member.firstname
+	                title: member.firstname,
+					icon: pinImage,
+					flat: true
 	            });
-
-				var info = '<div class="info">'+
-								"<div>" + member.firstname + " " + member.lastname + "</div>" +
-								"<div>" + member.place.vicinity + "</div>" +
-								"<div>" + '<a href="' + member.companyurl + '" rel="nofollow">'
-								+ member.companyname + "</a></div>" +
-								// "<div>" + Share + "</div>" +
-								"<div>" + member.companydescription + "</div>" +
-								"<div>" + member.role + "</div>" +
-				      		'</div>';
+	
+				var member_info = '<div class="member-name">' 
+									+ member.firstname + " " + member.lastname 
+									+ '</div><div>'
+									+ member.role
+									+ '</div><div class="member-address">'
+									+ address 
+									+ '</div><div>'									
+									+ '<a class="member-company-link" href="' 
+									+ member.companyurl + '" rel="nofollow">'
+									+ member.companyname 
+									+ '</a></div><div>'
+									+ member.companydescription 									
+									+ '</div>';
+								
+				var info = '<div class="few-info">'
+							+ member_info
+							+ '</div>';
+							
+			if(isNewMember) {
+					var new_member_intro = '<div class="few-thanks-header">'
+												+ '<div>Thanks for pinning!</div>'
+												+ '<div class="tweet-btn-container">'
+												+ '<a href="https://twitter.com/share?'
+												+ 'text=I just joined a global network of female entrepreneurs representing '
+												+ address
+												+ '&hashtags=projectfew'
+												+ '&via=holafew'
+												+ "&url=http://few.org" + '/?pin=' + member._id
+												+ '" target="_blank">Send a tweet and spread the word!</a>'
+												+ '</div>'
+												+ '<div class=thanks-line></div>'
+												+ '</div>';
+												
+					info = '<div class="few-info">'
+								+ new_member_intro
+								+ member_info
+								+ '</div>';
+			}
 				
-				var coordInfoWindow = new google.maps.InfoWindow({
-							      content: info
-							  });
-				// coordInfoWindow.open(scope.map,marker);
+				var coordInfoWindow = new google.maps.InfoWindow({content: info});
+				google.maps.event.addListener(coordInfoWindow, 'domready', function() {
+					//dynamically change info window here
+				});
+
 				var markerMouseoutListener = google.maps.event.addListener(marker, 'mouseout', function() {
 			    	coordInfoWindow.close(scope.map, marker);
 				});
@@ -90,42 +161,25 @@ directive('appVersion', ['version', function(version) {
 				var markerMouseoverListener = google.maps.event.addListener(marker, 'mouseover', function() {
 			    	coordInfoWindow.open(scope.map, marker);
 				});
-
-			}
-			
-		
-			scope.$on('event:newmemberadded', function(event, new_member){
-				scope.addPinForMember(new_member);
-				scope.map.setCenter(marker.getPosition());
-			});
-			
-			scope.$on('event:addmemberpins', function(event, members){
-				for (var i=0; i<members.length; i++) {
-					scope.addPinForMember(members[i]);
-				}
 				
+				if(shouldHighlight) {
+					scope.map.setCenter(marker.getPosition());
+					scope.map.setZoom(5);
+					coordInfoWindow.open(scope.map, marker);
+				}
+			}
+			
+			
+			scope.$on('event:newmemberadded', function(event, new_member){
+				scope.addPinForMember(new_member, true, true);
 			});
 			
-			scope.addInfoWindowForMember = function(member) {
+			scope.$on('event:addmemberpins', function(event, members, highlightId){
+				for (var i=0; i<members.length; i++) {
+					scope.addPinForMember(members[i], (highlightId === members[i]._id), false);
+				}
+			});
 
-			}
-	
-		    if (navigator.geolocation) {
-		        navigator.geolocation.getCurrentPosition(function (position) {
-					var fake_member = {
-						firstname: 'Jen',
-						place: {
-							geometry: {
-								location: {
-									lat: position.coords.latitude,
-									lng: position.coords.longitude
-								}
-							}
-						}
-					}
-					scope.addPinForMember(fake_member);
-		        });
-		    }
   		}
 	}
 }]);

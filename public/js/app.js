@@ -11,6 +11,7 @@ angular.module('few', [
   'few.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/', {controller: 'MainCtrl'});
   $routeProvider.when('/participate', {templateUrl: 'partials/participate.html', controller: 'ParticipateCtrl'});
   $routeProvider.when('/mission', {templateUrl: 'partials/mission.html', controller: 'MissionCtrl'});
   $routeProvider.when('/statistics', {templateUrl: 'partials/statistics.html', controller: 'StatisticsCtrl'});

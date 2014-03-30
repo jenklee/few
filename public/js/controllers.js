@@ -3,13 +3,12 @@
 /* Controllers */
 
 angular.module('few.controllers', []).
-  controller('MainCtrl', ["$scope", "$http", '$location', '$timeout', function($scope, $http, $location, $timeout) {
+  controller('MainCtrl', ["$scope", "$http", "$routeParams", '$location', '$timeout', function($scope, $http, $routeParams, $location, $timeout) {
 		
 		$scope.showPage = false;
 		$scope.$on("event:navto", function(event, path) {
 			$scope.navtopath(path);
 		});
-		
 		
 		$scope.navtopath = function(path) {
 			if(path === '/' && $scope.showPage){
@@ -33,8 +32,9 @@ angular.module('few.controllers', []).
 		      success(function(data, status) {
 		        $scope.status = status;
 		        $scope.data = data;
-				$scope.$emit("event:addmemberpins", data);
-				console.log($location.hash());
+				//http://localhost:3000/?pin=53377f645667c1bb0909d971
+				var search = $location.search();
+				$scope.$emit("event:addmemberpins", data, search.pin);
 		      }).
 		      error(function(data, status) {
 		        $scope.data = data || "Request failed";
@@ -55,9 +55,7 @@ angular.module('few.controllers', []).
 		}
 		
 		angular.extend(member.place.geometry.location, location);
-		
-		console.log("Adding ", member);
-				
+						
 		$http.post('/api/addmember', member).
 		      success(function(data, status) {			
 				$scope.$emit("event:newmemberadded", data);
