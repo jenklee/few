@@ -54,32 +54,32 @@ directive('appVersion', ['version', function(version) {
 			    mapTypeControl: false,
 			    mapTypeControlOptions: {
 			        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 			    panControl: true,
 			    panControlOptions: {
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 			    zoomControl: true,
 			    zoomControlOptions: {
 			        style: google.maps.ZoomControlStyle.MEDIUM,
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 			    scaleControl: true,
 			    scaleControlOptions: {
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 			    streetViewControl: false,
 			    streetViewControlOptions: {
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 			    rotateControl: true,
 			    rotateControlOptions: {
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 			    navigationControl: true,
 			    navigationControlOptions: {
-			        position: google.maps.ControlPosition.LEFT_CENTER
+			        position: google.maps.ControlPosition.LEFT_BOTTOM
 			    },
 		        mapTypeId: google.maps.MapTypeId.ROADMAP
 		    };

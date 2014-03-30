@@ -68,6 +68,9 @@ span {
   color: #6600FF;
   line-height: 29px;
 }
+.participate-intro p {
+  padding-bottom: 20px;
+}
 .few-info {
   width: 350px;
   padding: 10px;
@@ -152,8 +155,8 @@ span {
   height: 100%;
 }
 form {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 /*push page contents below the nav bar*/
 .top-spacer {
