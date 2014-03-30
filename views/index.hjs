@@ -1,36 +1,131 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div id="map-canvas"></div>
-    <div class="container-overlay">
-        <nav class="navbar navbar-fixed-top" role="navigation">
-            <div class="nav-bg"></div>
-          <div class="container">
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                   <div class="main-title">
-                       <h1 class="text-center">Female Entrepreneurs of the World</h1>
-                  </div>
-                  <ul class="nav navbar-nav nav-justified">
-                      <li><a href="#">Map</a></li>
-                      <li><a href="#">Participate</a></li>
-                      <li><a href="#">Connect</a></li>
-                      <li><a href="#">Statistics</a></li>
-                      <li><a href="#">Principals</a></li>
-                      <li><a href="#">Events</a></li>
-                      <li><a href="#">Mission</a></li>
-                  </ul>
-            </div><!-- /.navbar-collapse -->
-          </div>
-        </nav>
-    </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO5fI0Q5bylshywa9u-_rYl3uOk0_SEI&v=3.exp&sensor=false"></script>
-    <script src="/javascripts/few.js"></script>
-  </body>
+<html ng-app="few">
+    
+    <head>
+        <title>
+            Project FEW
+        </title>
+        <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
+        />
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    
+    <body ng-controller='MainCtrl'>
+        <div id="map-canvas"
+            google-map>
+        </div>
+        <div class="container-overlay">
+            <nav class="navbar navbar-fixed-top nav-bg"
+                ng-class="{expanded:showPage}"
+                role="navigation">
+                <div class="collapse navbar-collapse">
+                    <div class="main-title">                    
+                        <a href="/"
+                            ng-click='showPage=false'>
+                            <h1 class="text-center main-header">
+                                Female Entrepreneurs of the World
+                            </h1>
+                        </a>
+                        <ul class="nav navbar-nav nav-justified">
+                            <li>
+                                <span class='nav-line pull-right'>
+                                </span>
+                            </li>
+                            <li>
+                                <ul class="nav navbar-nav nav-justified">
+                                    <li>
+                                        <a ng-click='navtopath("participate")'>
+                                            <div class="custom-underline-container">
+                                                PARTICIPATE
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>    
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click='navtopath("mission")'>
+                                            <div class="custom-underline-container">
+                                                MISSION
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>  
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click='navtopath("statistics")'>
+                                            <div class="custom-underline-container">
+                                                STATISTICS
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>      
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click='navtopath("principals")'>
+                                            <div class="custom-underline-container">
+                                                PRINCIPALS
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click='navtopath("events")'>
+                                            <div class="custom-underline-container">
+                                                EVENTS
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click='navtopath("connect")'>
+                                            <div class="custom-underline-container">
+                                                CONNECT
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class='nav-line'>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                        
+                <div class="fluid-container page-container">
+                    <div ng-view
+                        class="page">
+                    </div> 
+                </div>
+            </nav>            
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js">
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.min.js">
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.min.js">
+        </script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js">
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO5fI0Q5bylshywa9u-_rYl3uOk0_SEI&v=3.exp&sensor=false&libraries=places">
+        </script>
+        <script src="/js/app.js">
+        </script>
+        <script src="/js/controllers.js">
+        </script>
+        <script src="/js/directives.js">
+        </script>
+        <script src="/js/filters.js">
+        </script>
+        <script src="/js/services.js">
+        </script>
+    </body>
+
 </html>
