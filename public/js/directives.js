@@ -85,6 +85,8 @@ directive('appVersion', ['version', function(version) {
 		    };
 
     		scope.map = new google.maps.Map(elem[0], mapOptions);
+
+			scope.infoWindows = [];
 			
 			scope.addPinForMember = function(member, shouldHighlight, isNewMember) {
 								
@@ -101,8 +103,8 @@ directive('appVersion', ['version', function(version) {
 	                position: currentLocation,
 	                map: scope.map,
 	                title: member.firstname,
-					icon: pinImage,
-					flat: true
+				//	icon: pinImage,
+				//	flat: true
 	            });
 	
 				var member_info = '<div class="member-name">' 
@@ -145,6 +147,8 @@ directive('appVersion', ['version', function(version) {
 			}
 				
 				var coordInfoWindow = new google.maps.InfoWindow({content: info});
+				scope.infoWindows.push(coordInfoWindow);
+				
 				google.maps.event.addListener(coordInfoWindow, 'domready', function() {
 					//dynamically change info window here
 				});
@@ -171,6 +175,9 @@ directive('appVersion', ['version', function(version) {
 			
 			
 			scope.$on('event:newmemberadded', function(event, new_member){
+				for(var i=0; scope.infoWindows.length; i++) {
+					scope.infoWindows[0].close();
+				}
 				scope.addPinForMember(new_member, true, true);
 			});
 			

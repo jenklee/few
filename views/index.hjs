@@ -5,6 +5,7 @@
         <title>
             Project FEW
         </title>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
         <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
         />
         <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -35,7 +36,7 @@
                                 <ul class="nav navbar-nav nav-justified">
                                     <li>
                                         <a ng-click='navtopath("participate")'>
-                                            <div class="custom-underline-container">
+                                            <div class="custom-underline-container nav-links">
                                                 PARTICIPATE
                                                 <div class="custom-underline">
                                                 </div>
@@ -44,7 +45,7 @@
                                     </li>
                                     <li>
                                         <a ng-click='navtopath("mission")'>
-                                            <div class="custom-underline-container">
+                                            <div class="custom-underline-container nav-links">
                                                 MISSION
                                                 <div class="custom-underline">
                                                 </div>
@@ -53,7 +54,7 @@
                                     </li>
                                     <li>
                                         <a ng-click='navtopath("statistics")'>
-                                            <div class="custom-underline-container">
+                                            <div class="custom-underline-container nav-links">
                                                 STATISTICS
                                                 <div class="custom-underline">
                                                 </div>
@@ -61,17 +62,17 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("principals")'>
-                                            <div class="custom-underline-container">
-                                                PRINCIPALS
+                                        <a ng-click='navtopath("blog")'>
+                                            <div class="custom-underline-container nav-links">
+                                                BLOG
                                                 <div class="custom-underline">
                                                 </div>
-                                            </div>
+                                            </div>      
                                         </a>
                                     </li>
                                     <li>
                                         <a ng-click='navtopath("events")'>
-                                            <div class="custom-underline-container">
+                                            <div class="custom-underline-container nav-links">
                                                 EVENTS
                                                 <div class="custom-underline">
                                                 </div>
@@ -79,8 +80,17 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a ng-click='navtopath("principals")'>
+                                            <div class="custom-underline-container nav-links">
+                                                PRINCIPALS
+                                                <div class="custom-underline">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a ng-click='navtopath("connect")'>
-                                            <div class="custom-underline-container">
+                                            <div class="custom-underline-container nav-links">
                                                 CONNECT
                                                 <div class="custom-underline">
                                                 </div>
@@ -97,7 +107,8 @@
                     </div>
                 </div>
                         
-                <div class="fluid-container page-container">
+                <div class="fluid-container page-container"
+                    ng-class="{expanded:showPage}">
                     <div ng-view
                         class="page">
                     </div> 

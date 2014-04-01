@@ -15,8 +15,9 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/participate', {templateUrl: 'partials/participate.html', controller: 'ParticipateCtrl'});
   $routeProvider.when('/mission', {templateUrl: 'partials/mission.html', controller: 'MissionCtrl'});
   $routeProvider.when('/statistics', {templateUrl: 'partials/statistics.html', controller: 'StatisticsCtrl'});
-  $routeProvider.when('/principals', {templateUrl: 'partials/principals.html', controller: 'PrincipalsCtrl'});
+  $routeProvider.when('/blog', {templateUrl: 'partials/blog.html', controller: 'BlogCtrl'});
   $routeProvider.when('/events', {templateUrl: 'partials/events.html', controller: 'EventsCtrl'});
+  $routeProvider.when('/principals', {templateUrl: 'partials/principals.html', controller: 'PrincipalsCtrl'});
   $routeProvider.when('/connect', {templateUrl: 'partials/connect.html', controller: 'ConnectCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
 }]).

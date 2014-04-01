@@ -3,11 +3,28 @@
 /* Controllers */
 
 angular.module('few.controllers', []).
-  controller('MainCtrl', ["$scope", "$http", "$routeParams", '$location', '$timeout', function($scope, $http, $routeParams, $location, $timeout) {
+  controller('MainCtrl', ["$scope", "$rootScope", "$http", "$routeParams", "$location", "$timeout", "$log",  function($scope, $rootScope, $http, $routeParams, $location, $timeout, $log) {
+		
+		function endsWith(str, suffix) {
+		    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+		}
 		
 		$scope.showPage = false;
 		$scope.$on("event:navto", function(event, path) {
 			$scope.navtopath(path);
+		});
+		
+		$rootScope.$on("$locationChangeStart", function(event, next, current) {
+			if(next && (endsWith(next, 'participate')
+							|| endsWith(next, 'mission') 
+							|| endsWith(next, 'statistics') 
+							|| endsWith(next, 'blog') 
+							|| endsWith(next, 'events') 
+							|| endsWith(next, 'principals') 
+							|| endsWith(next, 'connect') ))
+			{
+				$scope.showPage = true;
+			}
 		});
 		
 		$scope.navtopath = function(path) {
@@ -20,7 +37,7 @@ angular.module('few.controllers', []).
 				$timeout(function(){
 					$location.path(path);
 				},
-				900);
+				1000);
 			}
 			else{
 				$scope.showPage = true;
@@ -68,13 +85,15 @@ angular.module('few.controllers', []).
 	}
 	
   }])
+  .controller('MissionCtrl', ["$scope", function($scope) {
+  }])
   .controller('StatisticsCtrl', ["$scope", function($scope) {
+  }])
+  .controller('BlogCtrl', ["$scope", function($scope) {
   }])
   .controller('EventsCtrl', ["$scope", function($scope) {
   }])
   .controller('PrincipalsCtrl', ["$scope", function($scope) {
-  }])
-  .controller('MissionCtrl', ["$scope", function($scope) {
   }])
   .controller('ConnectCtrl', ["$scope", function($scope) {
   }]);
