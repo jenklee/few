@@ -3,12 +3,14 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('few', [
+  'angular-momentjs',
   'ngRoute',
   'ngAnimate',
   'few.filters',
   'few.services',
   'few.directives',
   'few.controllers'
+
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {controller: 'MainCtrl'});

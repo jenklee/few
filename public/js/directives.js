@@ -14,7 +14,8 @@ directive('appVersion', ['version', function(version) {
 		restric: 'A',
 		transclude: true,
 		scope: {
-		        ngModel: "="
+		        ngModel: "=",
+				invalidPlace: "=invalidPlace"
 		      },
 		link: function(scope, elem, attrs) {
 			
@@ -23,17 +24,20 @@ directive('appVersion', ['version', function(version) {
 			google.maps.event.addListener(autocomplete, 'place_changed', function() {
 				scope.$apply(function(){
 					scope.ngModel = autocomplete.getPlace();
+					scope.invalidPlace = false;
 				});
 			});
 		
 		}
 	}
 }])
-.directive('googleMap', ["$location", function ($location) {
+.directive('googleMap', ["$location", "$moment", function ($location, $moment) {
 	return {
 		restrict: 'A',
 		transclude: true,
 		link: function (scope, elem, attrs) {
+			
+			scope.infoWindows = [];
 			
 		    var defaultLatlng = new google.maps.LatLng(27.0000, 17.0000);
 		    var mapOptions = {
@@ -86,7 +90,7 @@ directive('appVersion', ['version', function(version) {
 
     		scope.map = new google.maps.Map(elem[0], mapOptions);
 
-			scope.infoWindows = [];
+			
 			
 			scope.addPinForMember = function(member, shouldHighlight, isNewMember) {
 								
@@ -102,10 +106,11 @@ directive('appVersion', ['version', function(version) {
 				var marker = new google.maps.Marker({
 	                position: currentLocation,
 	                map: scope.map,
-	                title: member.firstname,
-				//	icon: pinImage,
-				//	flat: true
+	                title: member.firstname
 	            });
+	
+				var member_joined = $moment(member.joined).fromNow();
+				console.log(member.joined, member_joined);
 	
 				var member_info = '<div class="member-name">' 
 									+ member.firstname + " " + member.lastname 
@@ -119,13 +124,15 @@ directive('appVersion', ['version', function(version) {
 									+ member.companyname 
 									+ '</a></div><div>'
 									+ member.companydescription 									
-									+ '</div>';
+									+ '</div><div>'
+									+ 'Joined ' + member_joined 
+									+ '</div';
 								
 				var info = '<div class="few-info">'
 							+ member_info
 							+ '</div>';
 							
-			if(isNewMember) {
+				if(isNewMember) {
 					var new_member_intro = '<div class="few-thanks-header">'
 												+ '<div>Thanks for pinning!</div>'
 												+ '<div class="tweet-btn-container">'
@@ -144,11 +151,11 @@ directive('appVersion', ['version', function(version) {
 								+ new_member_intro
 								+ member_info
 								+ '</div>';
-			}
+				}
 				
 				var coordInfoWindow = new google.maps.InfoWindow({content: info});
 				scope.infoWindows.push(coordInfoWindow);
-				
+			
 				google.maps.event.addListener(coordInfoWindow, 'domready', function() {
 					//dynamically change info window here
 				});
@@ -156,37 +163,37 @@ directive('appVersion', ['version', function(version) {
 				var markerMouseoutListener = google.maps.event.addListener(marker, 'mouseout', function() {
 			    	coordInfoWindow.close(scope.map, marker);
 				});
-				
+			
 				var markerClickListener = google.maps.event.addListener(marker, 'click', function() {
 					google.maps.event.removeListener(markerMouseoutListener);
 			    	coordInfoWindow.open(scope.map, marker);
 				});
-				
+			
 				var markerMouseoverListener = google.maps.event.addListener(marker, 'mouseover', function() {
 			    	coordInfoWindow.open(scope.map, marker);
 				});
-				
+			
 				if(shouldHighlight) {
 					scope.map.setCenter(marker.getPosition());
 					scope.map.setZoom(5);
 					coordInfoWindow.open(scope.map, marker);
 				}
 			}
-			
+	  		
 			
 			scope.$on('event:newmemberadded', function(event, new_member){
-				for(var i=0; scope.infoWindows.length; i++) {
-					scope.infoWindows[0].close();
-				}
+				console.log('adding new member');
+				/*for(var i=0; scope.infoWindows.length; i++) {
+					scope.infoWindows[i].close();
+				}*/
 				scope.addPinForMember(new_member, true, true);
 			});
-			
+		
 			scope.$on('event:addmemberpins', function(event, members, highlightId){
 				for (var i=0; i<members.length; i++) {
 					scope.addPinForMember(members[i], (highlightId === members[i]._id), false);
 				}
 			});
-
-  		}
+		}
 	}
 }]);

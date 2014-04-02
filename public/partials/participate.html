@@ -11,92 +11,116 @@
                 <p style="font-weight:700;">Add yourself to the map and join our growing network.</p>
             </div>
         </div>
-
-        <form role='form'
-            name="memberform" 
-            ng-submit="add(member)">
-            <div class="form-group">
-                <div class="row">
-                    <input type="text"
-                        class="col-md-5" 
-                        name="first" 
-                        placeholder="First Name"
-                        ng-model="member.firstname" />
-                    <input type="text" 
-                        class="col-md-6 col-md-offset-1" 
-                        name="last" 
-                        placeholder="Last Name"
-                        ng-model="member.lastname" />
-                </div>
-            </div>
+        
+        <div class="col-md-12">
+            <form role='form'
+                name="memberform" 
+                class="participate-form"
+                ng-class="{errors:showFormErrors}"
+                ng-submit="add(member)"
+                novalidate>
                 <div class="form-group">
                     <div class="row">
-                        <input type="email" 
-                            class="col-md-12" 
-                            name="email"
-                            placeholder="Email Address" 
-                            ng-model="member.email" />
+                        <input type="text"
+                            class="col-md-5" 
+                            name="first" 
+                            placeholder="First Name*"
+                            ng-model="member.firstname" 
+                            required />
+                        <input type="text" 
+                            class="col-md-6 col-md-offset-1" 
+                            name="last" 
+                            placeholder="Last Name*"
+                            ng-model="member.lastname"
+                            required />
                     </div>
                 </div>
-            <div class="form-group">
-                <div class="row">
-                    <input type="text" 
-                        class="col-md-12" 
-                        name="place" 
-                        placeholder="Location"
-                        ng-model="member.place" 
-                        google-places/>
+                    <div class="form-group">
+                        <div class="row">
+                            <input type="email" 
+                                class="col-md-12" 
+                                name="email"
+                                placeholder="Email Address* (We won't share this with anyone)" 
+                                ng-model="member.email"
+                                required />
+                        </div>
+                    </div>
+                <div class="form-group">
+                    <div class="row">
+                        <input type="text" 
+                            class="col-md-12 place"
+                            ng-class="{error:invalidPlace}"
+                            name="place" 
+                            placeholder="Location*"
+                            ng-model="member.place"
+                            invalid-place='invalidPlace'
+                            google-places
+                            required />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <input type="text" 
-                        class="col-md-12" 
-                        name="companyname"
-                        placeholder="Company Name" 
-                        ng-model="member.companyname" />
+                <div class="form-group">
+                    <div class="row">
+                        <input type="text" 
+                            class="col-md-12" 
+                            name="companyname"
+                            placeholder="Company Name*" 
+                            ng-model="member.companyname"
+                            required />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <input type="url" 
-                        class="col-md-12" 
-                        name="companyurl"
-                        placeholder="Company URL"
-                        ng-model="member.companyurl" />
+                <div class="form-group">
+                    <div class="row">
+                        <input type="url" 
+                            class="col-md-12" 
+                            name="companyurl"
+                            placeholder="Company URL (Include http:// or https://)"
+                            ng-model="member.companyurl" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <input type="text" 
-                        class="col-md-12" 
-                        name="role"
-                        placeholder="Role (ex. Developer, Designer)" 
-                        ng-model="member.role" />
+                <div class="form-group">
+                    <div class="row">
+                        <input type="text" 
+                            class="col-md-12" 
+                            name="role"
+                            placeholder="Role (ex. Developer, Designer, Co-founder)" 
+                            ng-model="member.role" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <textarea class="col-md-12" 
-                        rows="2"
-                        name="companydescription"
-                        placeholder="Company description (Max 140 characters)" 
-                        ng-model="member.companydescription">
-                    </textarea>
+                <div class="form-group">
+                    <div class="row">
+                        <textarea class="col-md-12" 
+                            rows="2"
+                            name="companydescription"
+                            placeholder="Company description (Max 140 characters)" 
+                            ng-model="member.companydescription">
+                        </textarea>
+                    </div>
                 </div>
-            </div>
 
-            <div class="checkbox" style="font-style:italic; font-size: 15px;">
-              <label>
-                  <input type="checkbox"
-                      name="isfemalefounder" 
-                      ng-model="member.isfemalefounder" /> Please check this box if you are a female founder.
-              </label>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <button class="btn btn-default" ng-submit="add(member)">Submit</button>
+                <div class="row checkbox" style="font-style:italic; font-size: 15px;">
+                  <label>
+                      <input type="checkbox"
+                          class="checkbox-input"
+                          name="isfemalefounder" 
+                          ng-model="member.isfemalefounder" /> Check this box if you are a female founder.
+                  </label>
                 </div>
-            </div>                
-        </form>    
+                <div class="form-group server-info-error"
+                    ng-show='serverErrorMsg'>
+                    <div class="row">
+                        <div>{{serverErrorMsg}}</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <button class="col-md-12 btn btn-default save-btn" ng-submit="add(member)">SAVE</button>
+                    </div>
+                </div>
+                            
+            </form>
+        </div> 
+        <div class="row">
+            <div class="col-md-12 view-bottom-spacer">        
+            </div>
+        </div>    
     </div>

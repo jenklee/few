@@ -1,15 +1,42 @@
 <div class="col-md-4 col-md-offset-4 top-spacer">
     <h2>Statistics</h2>
+    <div class="col-md-12">
+        <div class="subhead-line center-block"></div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
-            <div class="subhead-line center-block"></div>
+            <h4>Stats as of [January 3, 2013]:</h4>
+            <h6>{{members.count}} Contributors from {{cities | countryTotal }} Cities and {{counties | countryTotal }} Countries</h6>
+            <h2>Countries</h2>
+            <ul class="list-unstyled col-md-12">
+                <li ng-repeat="country in counties">
+                    <div class="col-md-1">{{country.count}}</div>
+                    <div class="col-md-11">{{country.long_name}}</div>
+                </li>
+            </ul>
+            <h2>Cities</h2>
+            <ul class="list-unstyled col-md-12">
+                <li ng-repeat="city in cities">
+                    <div class="col-md-1">{{city.count}}</div>
+                    <div class="col-md-11">{{city._id.long_name}}</div>
+                </li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Stats as of [January 3, 2013]:</h3>
-                <p>X Contributors from X Cities and X Countries
-                (dropdown)</p>
-                <p>X Startup founded by women
-                (dropdown)</p>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">  
+            <h4>{{founders.length}} Startup founded by women</h4>
+            <ul class="list-unstyled col-md-12">
+                <li ng-repeat="founder in founders">
+                    <a ng-href="{{founder._id.companyurl}}" target="_blank">
+                        <h6>{{founder._id.companyname}}</h6>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 view-bottom-spacer">        
+        </div>
+    </div>
 </div>

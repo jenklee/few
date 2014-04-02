@@ -7,4 +7,26 @@ angular.module('few.filters', []).
     return function(text) {
       return String(text).replace(/\%VERSION\%/mg, version);
     }
-  }]);
+  }])
+.filter('countryTotal', [function() {
+  return function(counties) {
+	var total = 0;
+	if(angular.isArray(counties) ){
+		angular.forEach(counties, function(county, idx){
+		      total = total + county.count;
+		});
+	}
+    return total;
+  };
+}])
+.filter('cityTotal', [function() {
+  return function(cities) {
+	var total = 0;
+	if(angular.isArray(cities) ){
+		angular.forEach(cities, function(city, idx){
+		      total = total + city.count;
+		});
+	}
+    return total;
+  };
+}]);

@@ -28,6 +28,9 @@ h5 {
 h6 {
   font-weight: 300;
   font-size: 15px;
+  line-height: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 h7 {
   font-size: 15px;
@@ -52,6 +55,9 @@ h7 {
   height: 0px;
   width: 100%;
   top: 115px;
+}
+.view-bottom-spacer {
+  height: 50px;
 }
 .page-container.expanded {
   height: 100%;
@@ -112,13 +118,10 @@ h7 {
 .navbar {
   height: 115px;
   -webkit-transition: all ease-in-out 1.2s;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 35px 0px;
 }
 .navbar.expanded {
   height: 100%;
-}
-form {
-  padding-left: 0px;
-  padding-right: 0px;
 }
 /*push page contents below the nav bar*/
 .top-spacer {
@@ -128,7 +131,7 @@ form {
   display: inline-block;
   border-top: 1px solid #6600FF;
   width: 85%;
-  height: 27px;
+  height: 29px;
 }
 .custom-underline-container {
   display: inline;
@@ -157,6 +160,29 @@ a:focus {
 a:visited {
   color: #404040;
 }
+/*
+a .main-header {
+   display: block;
+   padding: 50px;
+   color: transparent;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: #6600FF;
+   font: bold 7em Arial, sans-serif;
+   position: relative;
+}
+
+a .main-header:before, a .main-header:after {
+   content: attr(title);
+   padding: 50px;
+   color: transparent;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: red;   
+   position: absolute;
+}
+
+a .main-header:before { top: 1px; left: 1px; }
+a .main-header:after  { top: 2px; left: 2px; }
+*/
 a .main-header {
   color: transparent;
   -webkit-text-stroke-width: 1px;
@@ -169,8 +195,7 @@ a .main-header:visited {
   color: #6600FF;
 }
 .container-overlay p,
-.container-overlay div,
-.container-overlay span {
+.container-overlay div {
   font-weight: 400;
   letter-spacing: 1px;
   font-size: 15px;
@@ -196,7 +221,7 @@ a .nav-links:visited {
   background-color: #FOFOFO !important;
   display: block;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
   background-color: #fff;
   border-radius: 4px;
@@ -209,7 +234,7 @@ a .nav-links:visited {
   border: 1px solid #CCCCFF;
   background-color: #FOFOFF !important;
   display: block;
-  height: 53px;
+  height: 44px;
   padding: 6px 12px;
   font-size: 16px;
   letter-spacing: 2px;
@@ -247,6 +272,9 @@ a .nav-links:visited {
 }
 .section-intro p {
   padding-bottom: 10px;
+}
+.section-intro {
+  margin-bottom: -5px;
 }
 /* Info pop-up styling start */
 .few-info {
@@ -298,6 +326,61 @@ a .nav-links:visited {
   font-size: 15px !important;
 }
 /* Info pop-up styling end */
+/* Events start */
 .event-divider {
-  padding-bottom: 25px;
+  padding-bottom: 65px;
 }
+.event-row {
+  margin-bottom: 25px;
+}
+div.event-comingup {
+  margin-top: 20px;
+  margin-bottom: -18px;
+  color: #6600FF;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+/* Events end */
+/* Participate start */
+form {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+input.checkbox-input {
+  height: 21px;
+}
+.participate-form.errors input.ng-invalid,
+.participate-form.errors input.place.error {
+  border: 1px solid red;
+}
+.server-info-error div {
+  text-align: center;
+  color: red;
+}
+.save-btn {
+  height: 52px;
+  color: white;
+  background-color: #6600FF;
+  margin-top: 19px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 17px;
+  border: 1px solid #6600FF;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+.save-btn:hover {
+  border: 1px solid #6600FF;
+  background-color: #F0F0FF;
+  color: #6600FF;
+}
+.save-btn:focus {
+  border: 1px solid #6600FF;
+  background-color: #6600FF;
+  color: white;
+}
+/* Participate end */

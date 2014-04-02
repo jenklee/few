@@ -12,9 +12,9 @@ var api = require('./api/api');
 
 // Start prod db
 //mongodb://nodejitsu_jenklee:cemt3n60di86l5qln8hi69pbgv@ds029950.mongolab.com:29950/nodejitsu_jenklee_nodejitsudb3524258304
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://nodejitsu_jenklee:cemt3n60di86l5qln8hi69pbgv@ds029950.mongolab.com:29950/nodejitsu_jenklee_nodejitsudb3524258304", 
-{native_parser:true});
+//var mongo = require('mongoskin');
+var mongojs = require('mongojs');
+var db = mongojs("nodejitsu_jenklee:cemt3n60di86l5qln8hi69pbgv@ds029950.mongolab.com:29950/nodejitsu_jenklee_nodejitsudb3524258304");
 ObjectID = require('mongodb').ObjectID
 //End Prod db
 
@@ -37,6 +37,10 @@ app.get('/', routes.index);
 app.post('/api/addmember', api.addmember(db));
 app.get('/api/member/:id', api.member(db));
 app.get('/api/members', api.members(db));
+app.get('/api/stats/country', api.stats_country(db));
+app.get('/api/stats/city', api.stats_city(db));
+app.get('/api/stats/members', api.stats_members(db));
+app.get('/api/stats/founders', api.stats_founders(db));
 app.get('/*', routes.index);
 /*app.get("/*", function(req, res, next) {
     if (!/^\/api/.test(req.url)) {
