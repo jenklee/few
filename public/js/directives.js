@@ -37,7 +37,7 @@ directive('appVersion', ['version', function(version) {
 		transclude: true,
 		link: function (scope, elem, attrs) {
 			
-			scope.infoWindows = [];
+			/* init google map */
 			
 		    var defaultLatlng = new google.maps.LatLng(27.0000, 17.0000);
 		    var mapOptions = {
@@ -89,12 +89,15 @@ directive('appVersion', ['version', function(version) {
 		    };
 
     		scope.map = new google.maps.Map(elem[0], mapOptions);
-
+			scope.infoWindows = [];
+			scope.mapMarkers = [];
+			
+			/* init map finished */
 			
 			
 			scope.addPinForMember = function(member, shouldHighlight, isNewMember) {
 								
-				var currentLocation = new google.maps.LatLng(member.place.geometry.location.lat, member.place.geometry.location.lng);
+				var latlng = new google.maps.LatLng(member.place.geometry.location.lat, member.place.geometry.location.lng);
 				var address = (member.place.vicinity !== undefined)? member.place.vicinity : member.place.name;
 				
 				var pinColor = "8C92FF";
@@ -103,14 +106,34 @@ directive('appVersion', ['version', function(version) {
 			        new google.maps.Point(0,0),
 			        new google.maps.Point(10, 34));
 			
+				//final position for marker, could be updated if another marker already exists in same position
+				var finalLatLng = latlng;
+				//check to see if any of the existing markers match the latlng of the new marker
+				if (scope.mapMarkers.length != 0) {
+				    for (var i=0; i < scope.mapMarkers.length; i++) {
+				        var existingMarker = scope.mapMarkers[i];
+				        var pos = existingMarker.getPosition();
+
+				        //if a marker already exists in the same position as this marker
+				        if (latlng.equals(pos)) {
+				            //update the position of the coincident marker by applying a small multipler to its coordinates
+				            var newLat = latlng.lat() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+				            var newLng = latlng.lng() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+				            finalLatLng = new google.maps.LatLng(newLat,newLng);
+							console.log('sligthly changing the position of the pin');
+				        }
+				    }
+				}
+				
 				var marker = new google.maps.Marker({
-	                position: currentLocation,
+	                position: finalLatLng,
 	                map: scope.map,
 	                title: member.firstname
 	            });
+				
+				scope.mapMarkers.push(marker);
 	
 				var member_joined = $moment(member.joined).fromNow();
-				console.log(member.joined, member_joined);
 	
 				var member_info = '<div class="member-name">' 
 									+ member.firstname + " " + member.lastname 
@@ -124,7 +147,7 @@ directive('appVersion', ['version', function(version) {
 									+ member.companyname 
 									+ '</a></div><div>'
 									+ member.companydescription 									
-									+ '</div><div>'
+									+ '</div><div class="joined-timestamp">'
 									+ 'Joined ' + member_joined 
 									+ '</div';
 								
@@ -182,7 +205,6 @@ directive('appVersion', ['version', function(version) {
 	  		
 			
 			scope.$on('event:newmemberadded', function(event, new_member){
-				console.log('adding new member');
 				/*for(var i=0; scope.infoWindows.length; i++) {
 					scope.infoWindows[i].close();
 				}*/

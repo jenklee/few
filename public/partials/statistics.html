@@ -6,10 +6,12 @@
     <div class="row">
         <div class="col-md-12">
             <h4>Stats as of [January 3, 2013]:</h4>
-            <h6>{{members.count}} Contributors from {{cities | countryTotal }} Cities and {{counties | countryTotal }} Countries</h6>
-            <h2>Countries</h2>
-            <ul class="list-unstyled col-md-12">
-                <li ng-repeat="country in counties">
+            <h6>{{members.count}} Contributors from {{cities | countryTotal }} Cities and {{countries | countryTotal }} Countries</h6>
+            <h2><a ng-click="showCountries=!showCountries">Countries</a></h2>
+            {{showCountries}}
+            <ul class="list-unstyled col-md-12 animate-show"
+                ng-show="showCountries">
+                <li ng-repeat="country in countries">
                     <div class="col-md-1">{{country.count}}</div>
                     <div class="col-md-11">{{country.long_name}}</div>
                 </li>

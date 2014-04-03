@@ -9,10 +9,10 @@ angular.module('few.filters', []).
     }
   }])
 .filter('countryTotal', [function() {
-  return function(counties) {
+  return function(countries) {
 	var total = 0;
-	if(angular.isArray(counties) ){
-		angular.forEach(counties, function(county, idx){
+	if(angular.isArray(countries) ){
+		angular.forEach(countries, function(county, idx){
 		      total = total + county.count;
 		});
 	}

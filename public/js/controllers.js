@@ -121,9 +121,11 @@ angular.module('few.controllers', []).
   .controller('StatisticsCtrl', ["$scope", "$http", function($scope, $http) {
 		
 		$scope.cities = [];
-		$scope.counties = [];
+		$scope.countries = [];
 		$scope.members;
 		$scope.founders;
+		
+		$scope.showCountries = false;
 		
 		$http.get('/api/stats/members').
 		      success(function(data, status) {
@@ -159,7 +161,7 @@ angular.module('few.controllers', []).
 		
 		$http.get('/api/stats/country').
 		      success(function(data, status) {
-				$scope.counties = data[0].long_name;
+				$scope.countries = data[0].long_name;
 		      }).
 		      error(function(data, status) {
 				$scope.showFormErrors = true;
