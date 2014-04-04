@@ -56,11 +56,19 @@ exports.stats_members = function(db) {
 
 exports.stats_founders = function(db) {
 	return function(req, res) {
-		db.collection('members').aggregate([
-			{ $match: { "isfemalefounder" : true} },
-			{ $group: { _id:{companyname: "$companyname", companyurl: "$companyurl"} } },
-			{ $sort: { count: -1 } }
-		], function(err, stats) {
+			db.collection('members').find({"isfemalefounder":true}, ['companyname', 'companyurl']).sort({'companyname': 1}, function(err, stats) {
+		    	if(err) {
+					res.send({ msg: err });
+					throw err;
+				}
+			    res.json(stats);
+		});
+	}
+}
+
+exports.stats_participants = function(db) {
+	return function(req, res) {
+		db.collection('members').find([], ['firstname', 'lastname', 'joined']).sort({'lastname': 1}, function(err, stats) {
 		    if(err) {
 				res.send({ msg: err });
 				throw err;

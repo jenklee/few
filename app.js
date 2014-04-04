@@ -41,6 +41,7 @@ app.get('/api/stats/country', api.stats_country(db));
 app.get('/api/stats/city', api.stats_city(db));
 app.get('/api/stats/members', api.stats_members(db));
 app.get('/api/stats/founders', api.stats_founders(db));
+app.get('/api/stats/participants', api.stats_participants(db));
 app.get('/*', routes.index);
 /*app.get("/*", function(req, res, next) {
     if (!/^\/api/.test(req.url)) {

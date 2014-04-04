@@ -25,13 +25,15 @@
                             class="col-md-5" 
                             name="first" 
                             placeholder="First Name*"
-                            ng-model="member.firstname" 
+                            ng-model="member.firstname"
+                            capitalize-first
                             required />
                         <input type="text" 
                             class="col-md-6 col-md-offset-1" 
                             name="last" 
                             placeholder="Last Name*"
                             ng-model="member.lastname"
+                            capitalize-first
                             required />
                     </div>
                 </div>
@@ -65,6 +67,7 @@
                             name="companyname"
                             placeholder="Company Name*" 
                             ng-model="member.companyname"
+                            capitalize-first
                             required />
                     </div>
                 </div>
@@ -83,6 +86,7 @@
                             class="col-md-12" 
                             name="role"
                             placeholder="Role (ex. Developer, Designer, Co-founder)" 
+                            capitalize-first
                             ng-model="member.role" />
                     </div>
                 </div>
@@ -92,7 +96,8 @@
                             rows="2"
                             name="companydescription"
                             placeholder="Company description (Max 140 characters)" 
-                            ng-model="member.companydescription">
+                            ng-model="member.companydescription"
+                            capitalize-first>
                         </textarea>
                     </div>
                 </div>
@@ -102,7 +107,7 @@
                       <input type="checkbox"
                           class="checkbox-input"
                           name="isfemalefounder" 
-                          ng-model="member.isfemalefounder" /> Check this box if you are a female founder.
+                          ng-model="member.isfemalefounder" /> Check this box if you are a woman and have founded a company.
                   </label>
                 </div>
                 <div class="form-group server-info-error"

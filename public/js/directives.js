@@ -117,10 +117,9 @@ directive('appVersion', ['version', function(version) {
 				        //if a marker already exists in the same position as this marker
 				        if (latlng.equals(pos)) {
 				            //update the position of the coincident marker by applying a small multipler to its coordinates
-				            var newLat = latlng.lat() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
-				            var newLng = latlng.lng() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+				            var newLat = latlng.lat() + (Math.random() -.5) / 100;// * (Math.random() * (max - min) + min);
+				            var newLng = latlng.lng() + (Math.random() -.5) / 100;// * (Math.random() * (max - min) + min);
 				            finalLatLng = new google.maps.LatLng(newLat,newLng);
-							console.log('sligthly changing the position of the pin');
 				        }
 				    }
 				}
@@ -145,7 +144,7 @@ directive('appVersion', ['version', function(version) {
 									+ '<a class="member-company-link" href="' 
 									+ member.companyurl + '" rel="nofollow">'
 									+ member.companyname 
-									+ '</a></div><div>'
+									+ '</a></div><div class="company-description">'
 									+ member.companydescription 									
 									+ '</div><div class="joined-timestamp">'
 									+ 'Joined ' + member_joined 
@@ -165,12 +164,12 @@ directive('appVersion', ['version', function(version) {
 												+ '&hashtags=projectfew'
 												+ '&via=holafew'
 												+ "&url=http://few.org" + '/?pin=' + member._id
-												+ '" target="_blank">Send a tweet and spread the word!</a>'
+												+ '" target="_blank">Tweet your pin &amp; spread the word &rarr;</a>'
 												+ '</div>'
 												+ '<div class=thanks-line></div>'
 												+ '</div>';
 												
-					info = '<div class="few-info">'
+					info = '<div class="few-info few-thanks">'
 								+ new_member_intro
 								+ member_info
 								+ '</div>';
@@ -218,4 +217,24 @@ directive('appVersion', ['version', function(version) {
 			});
 		}
 	}
-}]);
+}])
+.directive('capitalizeFirst', function() {
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+        var capitalize = function(inputValue) {
+			if(inputValue) {
+				var capitalized = inputValue.charAt(0).toUpperCase() +
+	                             inputValue.substring(1);
+	           if(capitalized !== inputValue) {
+	              modelCtrl.$setViewValue(capitalized);
+	              modelCtrl.$render();
+	            }         
+	            return capitalized;
+			}
+         }
+         modelCtrl.$parsers.push(capitalize);
+         capitalize(scope[attrs.ngModel]);  // capitalize initial value
+     }
+   };
+});

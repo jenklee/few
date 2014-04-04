@@ -29,4 +29,22 @@ angular.module('few.filters', []).
 	}
     return total;
   };
-}]);
+}])
+.filter('fromNow', function() {
+    return function(dateString) {
+        return moment(dateString).fromNow();
+    };
+})
+.filter('participantToUpper', function() {
+    return function(participants) {
+		
+		angular.forEach(participants, function(participant, idx){
+			participant.firstname = angular.uppercase(participant.firstname.substring(0,1)) + participant.firstname.substring(1);
+			participant.lastname = angular.uppercase(participant.lastname.substring(0,1)) + participant.lastname.substring(1);
+		});
+
+        return participants;
+
+    };
+});
+

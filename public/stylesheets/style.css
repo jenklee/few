@@ -19,6 +19,10 @@ h2 {
 h3 {
   font-weight: 700;
   line-height: 30px;
+  color: black;
+}
+a h3:hover {
+  color: #6600FF;
 }
 h5 {
   font-weight: 400;
@@ -72,16 +76,18 @@ h7 {
 }
 .page.ng-enter,
 .page.ng-leave {
-  -webkit-transition: opacity ease-in-out 0s;
+  -webkit-transition: opacity ease-in-out 0.5s;
 }
 .page.ng-enter {
   opacity: 0;
+  transition-delay: 0.5s;
 }
 .page.ng-enter-active {
   opacity: 1;
 }
 .page.ng-leave {
   opacity: 1;
+  transition-delay: 0s;
 }
 .page.ng-leave-active {
   opacity: 0;
@@ -151,14 +157,14 @@ h7 {
 }
 a {
   text-decoration: none !important;
-  color: #404040;
+  color: #6600FF;
 }
 a:hover,
 a:focus {
   color: #6600FF !important;
 }
 a:visited {
-  color: #404040;
+  color: #6600FF;
 }
 /*
 a .main-header {
@@ -278,8 +284,11 @@ a .nav-links:visited {
 }
 /* Info pop-up styling start */
 .few-info {
-  width: 300px;
-  padding: 10px;
+  min-width: 300px;
+  padding: 15px 0px 7px 12px;
+}
+.few-info.few-thanks {
+  padding: 20px 10px 40px 20px;
 }
 .few-info div {
   color: black;
@@ -311,24 +320,29 @@ a .nav-links:visited {
   font-size: 15px !important;
 }
 .thanks-line {
-  width: 90%;
-  border-bottom: 1px solid gray;
+  width: 100% !important;
+  border-bottom: 1px solid lightgray;
   height: 0px;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 .tweet-btn-container {
   width: 100%;
   text-align: center;
 }
 .tweet-btn-container a {
-  color: #6600FF;
+  color: red;
   letter-spacing: 1px;
   font-size: 15px !important;
+  line-height: 29px;
 }
-.joined-timestamp {
-  float: right;
-  font-size: 11px;
+.few-info div.joined-timestamp {
+  float: left;
+  font-size: 13px !important;
   color: lightgray;
+  margin-bottom: 10px;
+}
+.company-description {
+  margin-bottom: 16px;
 }
 /* Info pop-up styling end */
 /* Events start */
@@ -341,7 +355,7 @@ a .nav-links:visited {
 div.event-comingup {
   margin-top: 20px;
   margin-bottom: -18px;
-  color: #6600FF;
+  color: #F62817;
   font-weight: 500;
   font-style: italic;
   font-size: 15px;
@@ -391,8 +405,6 @@ input.checkbox-input {
 /* Participate end */
 /* Statistics start */
 .animate-show {
-  top: 0;
-  position: absolute;
   opacity: 1;
   -webkit-transition: all linear 1s;
   transition: all linear 1s;
@@ -408,7 +420,6 @@ input.checkbox-input {
 }
 .animate-show.ng-hide {
   opacity: 0;
-  position: -100%;
 }
 .accordion-body {
   max-height: 100%;
@@ -465,21 +476,67 @@ input.checkbox-input {
 /* Statistics end */
 /* Principals start */
 .principal-container {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
 }
-.principal-name {
+.principal-container.right {
+  margin-left: 14px;
+}
+.principal-name a {
   font-weight: 700 !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
   letter-spacing: 1px !important;
-  margin-top: 4px;
+  margin-top: -7px;
   margin-bottom: -4px;
-  margin-left: 10px;
+  margin-left: 5px;
+  line-height: 27px !important;
+  color: #404040;
 }
 .principal-city {
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 400 !important;
+  font-size: 13px !important;
   letter-spacing: 1px;
-  margin-left: 10px;
+  margin-left: 5px;
+  line-height: 7px !important;
+}
+.principal-text {
+  cursor: pointer;
+  margin-top: -5px;
+}
+.stat-list {
+  line-height: 40px;
+}
+.stat-list div {
+  color: #404040;
+  font-weight: 300;
+}
+.stat-list a div:hover {
+  color: #6600FF;
+}
+.stat-list a div:visited {
+  color: #404040;
+}
+.stat-name-space {
+  margin-left: 5px;
+}
+div.stat-header {
+  font-weight: 700;
+  line-height: 22px;
+  color: black;
+  letter-spacing: 1px;
+  font-size: 17px;
+  width: 294px;
+  min-height: 29px;
+}
+.stat-column {
+  width: 258px;
+}
+.participant-timestamp {
+  font-weight: 400 !important;
+  font-size: 10px !important;
+  line-height: 12px;
+  margin-top: -6px;
+  letter-spacing: 1px;
+  color: lightgray;
 }
 /* Principals end */
 /* Blog start */
@@ -491,8 +548,8 @@ input.checkbox-input {
   padding: 0 !important;
   border-radius: 0px !important;
 }
-.blog-thumbnail-row {
-  margin-bottom: 20px;
+.blog-thumbnail-row li {
+  margin-bottom: 25px;
 }
 .blog-thumbnail-inner {
   max-width: 95%;
@@ -537,6 +594,9 @@ input.checkbox-input {
 .text-overlay {
   padding: 40px;
 }
+.text-overlay.always-show {
+  opacity: 1;
+}
 .caption-overlay {
   position: absolute;
   bottom: 0;
@@ -554,8 +614,9 @@ div.caption-title {
   letter-spacing: 1px;
   font-size: 16px;
   color: white;
-  line-height: 23px;
+  line-height: 21px;
   margin-bottom: 5px;
+  min-height: 46px;
 }
 div.author,
 div.author a {
@@ -566,6 +627,7 @@ div.author a {
   color: white;
   line-height: 17px;
   font-style: italic;
+  min-height: 17px;
 }
 .blog-thumbnail-inner:hover .caption-overlay {
   opacity: 0;
@@ -576,5 +638,10 @@ p.continue-text {
   font-size: 12px;
   letter-spacing: 1px;
   color: white;
+}
+.blog-contact {
+  width: 317px;
+  height: 254px;
+  background-color: #6600FF;
 }
 /* Blog end */

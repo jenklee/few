@@ -37,7 +37,7 @@ angular.module('few.controllers', []).
 				$timeout(function(){
 					$location.path(path);
 				},
-				1000);
+				500);
 			}
 			else{
 				$scope.showPage = true;
@@ -124,12 +124,30 @@ angular.module('few.controllers', []).
 		$scope.countries = [];
 		$scope.members;
 		$scope.founders;
+		$scope.participants;
 		
 		$scope.showCountries = false;
 		
 		$http.get('/api/stats/members').
 		      success(function(data, status) {
 				$scope.members = data;
+		      }).
+		      error(function(data, status) {
+				$scope.showFormErrors = true;
+				$scope.serverError = false;
+				if(data.length > 0){
+					$scope.serverErrorMsg = data;
+				}
+				else {
+					$scope.serverErrorMsg = "Sorry, our server is having issues. Please try again later.";
+				}
+
+		    });
+		
+		
+		$http.get('/api/stats/participants').
+		      success(function(data, status) {
+				$scope.participants = data;
 		      }).
 		      error(function(data, status) {
 				$scope.showFormErrors = true;
