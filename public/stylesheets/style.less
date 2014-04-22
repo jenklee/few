@@ -75,7 +75,7 @@ h7 {
 }
 
 .view-bottom-spacer {
-    height: 50px;
+    height: 600px;
 }
 
 .page-container.expanded {
@@ -194,12 +194,12 @@ h7 {
 
 a {
     text-decoration: none !important;
-    color: #6600FF;
+    color: gray; 
     &:hover, &:focus {
         color:#6600FF !important;
     }
     &:visited {
-        color: #6600FF;
+        color: gray;
     }
 }
 /*
@@ -240,13 +240,13 @@ a .main-header {
 .container-overlay div {
     font-weight: 400;
     letter-spacing: 1px;
-    font-size: 14px;
+    font-size: 15px;
     color: #404040;
-    line-height: 25px;
+    line-height: 26px;
 }
 
 a .nav-links {
-    font-weight: 500;
+    font-weight: 400;
     color: #6600FF;
     font-size: 12px;
     letter-spacing: 3px;
@@ -273,10 +273,11 @@ a .nav-links {
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-.container-overlay input {
+.memberform-field {
     border: 1px solid #CCCCFF;
     display: block;
     height: 44px;
+    width: 100%;
     padding: 6px 12px;
     font-size: 14px;
     letter-spacing: 2px;
@@ -286,6 +287,10 @@ a .nav-links {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; 
+}
+
+.container-overlay textarea {
+    width: 100%;
 }
 
 .input-wrapper {
@@ -431,7 +436,13 @@ form {
 }
 
 input.checkbox-input {
-    height: 21px;
+    height: 18px;
+}
+
+.few-checkbox {
+    font-style:italic; 
+    font-size: 14px; 
+    font-weight: normal;
 }
 
 .participate-form.errors input.ng-invalid,
@@ -446,6 +457,7 @@ input.checkbox-input {
 
 .save-btn {
     height: 52px;
+    width: 100%;
     color: white;
     background-color: #6600FF;
     margin-top: 19px;
@@ -473,7 +485,21 @@ input.checkbox-input {
 /* Participate end */
 
 /* Statistics start */
-    .animate-show {
+
+
+.center-column {
+    width: 226px;
+}
+
+.left-column {
+ width: 200px;
+
+}
+.right-column {
+    width: 294px;
+}
+
+.animate-show {
     opacity:1;
     -webkit-transition:all linear 1s;
     transition:all linear 1s;
@@ -539,7 +565,7 @@ input.checkbox-input {
   }
 
   100% {
-      margin-top:5px;
+    margin-top:5px;
     opacity: 1;
     z-index: 0;
   }
@@ -559,11 +585,9 @@ input.checkbox-input {
 
 .principal-container {
     padding-bottom: 40px;
+    width: 240px;
 }
 
-.principal-container.right {
-    margin-left: 14px;
-}
 
 .principal-name a {
     font-weight: 700 !important;
@@ -587,6 +611,11 @@ input.checkbox-input {
 .principal-text {
     cursor: pointer;
     margin-top: -5px;
+    margin-bottom: 18px;
+}
+
+.principal-text-description {
+    max-width: 500px;
 }
 
 .stat-list {
@@ -654,6 +683,7 @@ div.stat-header {
 
 .blog-thumbnail-inner {
     max-width: 95%;
+    min-width: 210px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -699,8 +729,9 @@ div.stat-header {
     font-size: 13px;
 }
 
-.text-overlay {
-    padding: 40px;
+.text-overlay-inner {
+    max-width: 80%;
+    padding-top: 8%;
 }
 
 .text-overlay.always-show {
@@ -755,15 +786,111 @@ p.continue-text {
 }
 
 .blog-contact {
-    width: 315px;
-    height: 252px;
     background-color: #6600FF;
+    padding: 0;
+}
+
+.text-overlay-inner.blog-inner {
+    max-width: 80%;
+    padding-top: 8%;
 }
 
 
 /* Blog end */
 
 
+/* Mobile support */
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+@media(max-width:767px){
+    .page-container {
+        top: 500px;
+    }
+    
+    .view-bottom-spacer {
+        min-height: 550px;
+    }
+    
+    .nav-line {
+        width: 100%;
+    }
+    
+    .navbar-nav {
+        margin:0px
+    }
+    
+    .center-column,
+    .right-column {
+        margin-top: 25px;
+    }
+
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media(min-width:768px){
+
+    .principal-container {
+        float: left;
+    }
+
+    .principal-container.left {
+        float: right;
+    }
+    
+    .view-bottom-spacer {
+        min-height: 550px;
+    }
+    
+    .center-column {
+        margin-left: auto;
+        margin-right: auto;
+        float: none !important;
+    }
+    
+    .left-column {
+        float: right !important;
+    }
+    
+    .right-column {
+        float: left;
+    }
+    
+    .text-overlay p.quote {
+        line-height: 21px;
+        font-size: 16px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px){
+    .view-bottom-spacer {
+        min-height: 50px;
+    }
+    
+    .text-overlay p.quote {
+        line-height: 14px;
+        font-size: 11px;
+    }
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+@media(min-width:1200px){
+
+    .text-overlay p.quote {
+        line-height: 16px;
+        font-size: 12px;
+    }
+}
+
+@media(min-width:1400px){
+
+    .text-overlay p.quote {
+        line-height: 19px;
+        font-size: 14px;
+    }
+}
 
 
 

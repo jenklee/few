@@ -5,6 +5,7 @@
         <title>
             Project FEW
         </title>
+        <link rel="icon" href="/images/few-icon-1px.png" type="image/png" />
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
         <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
         />
@@ -19,7 +20,6 @@
             <nav class="navbar navbar-fixed-top nav-bg"
                 ng-class="{expanded:showPage}"
                 role="navigation">
-                <div class="collapse navbar-collapse">
                     <div class="main-title">                    
                         <a href="/"
                             ng-click='showPage=false'>
@@ -27,6 +27,8 @@
                                 Female Entrepreneurs of the World
                             </h1>
                         </a>
+                    </div>
+                    <div class="navbar-collapse">
                         <ul class="nav navbar-nav nav-justified">
                             <li>
                                 <span class='nav-line pull-right'>
@@ -105,7 +107,6 @@
                             </li>
                         </ul>
                     </div>
-                </div>
                         
                 <div class="fluid-container page-container"
                     ng-class="{expanded:showPage}">
