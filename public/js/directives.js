@@ -159,11 +159,11 @@ directive('appVersion', ['version', function(version) {
 												+ '<div>Thanks for pinning!</div>'
 												+ '<div class="tweet-btn-container">'
 												+ '<a href="https://twitter.com/share?'
-												+ 'text=I just joined a global network of female entrepreneurs representing '
+												+ 'text=I joined a global network of female entrepreneurs representing '
 												+ address
 												+ '&hashtags=projectfew'
 												+ '&via=holafew'
-												+ "&url=http://few.org" + '/?pin=' + member._id
+												+ "&url=http://projectfew.org" + '/?pin=' + member._id
 												+ '" target="_blank">Tweet your pin &amp; spread the word &rarr;</a>'
 												+ '</div>'
 												+ '<div class=thanks-line></div>'
