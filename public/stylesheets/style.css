@@ -62,7 +62,7 @@ h7 {
   top: 100px;
 }
 .view-bottom-spacer {
-  height: 600px;
+  height: 80px;
 }
 .page-container.expanded {
   height: 100%;
@@ -701,7 +701,7 @@ p.continue-text {
   .center-column,
   .left-column,
   .right-column {
-    float: left;
+    float: left !important;
   }
 }
 /* Small devices (tablets, 768px and up) */
@@ -716,16 +716,13 @@ p.continue-text {
     min-height: 550px;
   }
   .center-column,
-  .right-column {
-    margin-top: 25px;
-  }
-  .center-column,
   .left-column,
   .right-column {
-    margin-left: auto;
-    margin-right: auto;
-    clear: both;
-    float: none;
+    float: left !important;
+  }
+  .center-column,
+  .right-column {
+    margin-top: 25px;
   }
   .text-overlay p.quote {
     line-height: 21px;
@@ -741,15 +738,20 @@ p.continue-text {
     line-height: 14px;
     font-size: 11px;
   }
+  .left-column {
+    float: right !important;
+  }
+  .center-column {
+    margin-left: auto;
+    margin-right: auto;
+    float: none !important;
+  }
+  .right-column {
+    float: left !important;
+  }
   .center-column,
   .right-column {
     margin-top: 0px;
-  }
-  .left-column {
-    float: right;
-  }
-  .right-column {
-    float: left;
   }
 }
 /* Large devices (large desktops, 1200px and up) */
