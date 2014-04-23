@@ -10,7 +10,7 @@
         <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
         />
         <link rel='stylesheet' href='/stylesheets/style.css' />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     </head>
     
     <body ng-controller='MainCtrl'>
@@ -22,8 +22,8 @@
                 ng-class="{expanded:showPage}"
                 role="navigation">
                     <div class="main-title">                    
-                    <a href="/"
-                        ng-click='showPage=!showPage; showMenu=!showMenu; is_index()'>
+                    <!--<a href="/" ng-click='showPage=!showPage; showMenu=!showMenu; is_index()'>-->
+                    <a href="/" ng-click="showPage=false">
                         <h1 class="text-center main-header" title="Female Entrepreneurs of the World">
                             Female Entrepreneurs of the World
                         </h1>
@@ -32,7 +32,9 @@
                 </div>
                 <div class="fluid-container">
 
-                    <div ng-hide="!showMenu" ng-class="{'is-index':is_index()}">
+                    <!--<div ng-hide="!showMenu" 
+                        ng-class="{'is-index':is_index()}">-->
+                    <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav nav-justified">
                             <li>
                                 <span class='nav-line pull-right'>

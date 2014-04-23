@@ -28,12 +28,12 @@ angular.module('few.controllers', []).
 							|| endsWith(next, 'connect') ))
 			{
 				$scope.showPage = true;
-				$scope.showMenu = false;
+				//$scope.showMenu = false;
 			}
-			else {
+			/*else {
 				$scope.showPage = true;
 				$scope.showMenu = true;
-			}
+			}*/
 
 		});
 		
@@ -54,7 +54,7 @@ angular.module('few.controllers', []).
 				$location.path(path);
 			}
 			
-			$scope.showMenu = $scope.showPage;
+			//$scope.showMenu = $scope.showPage;
 			
 		}
 		

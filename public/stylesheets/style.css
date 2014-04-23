@@ -710,16 +710,12 @@ p.continue-text {
   .view-bottom-spacer {
     min-height: 550px;
   }
-  .center-column {
+  .center-column,
+  .left-column,
+  .right-column {
     margin-left: auto;
     margin-right: auto;
     float: none !important;
-  }
-  .left-column {
-    float: right !important;
-  }
-  .right-column {
-    float: left;
   }
   .text-overlay p.quote {
     line-height: 21px;
@@ -734,6 +730,12 @@ p.continue-text {
   .text-overlay p.quote {
     line-height: 14px;
     font-size: 11px;
+  }
+  .left-column {
+    float: right !important;
+  }
+  .right-column {
+    float: left;
   }
 }
 /* Large devices (large desktops, 1200px and up) */
