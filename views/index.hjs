@@ -10,6 +10,7 @@
         <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
         />
         <link rel='stylesheet' href='/stylesheets/style.css' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
     <body ng-controller='MainCtrl'>
@@ -21,14 +22,17 @@
                 ng-class="{expanded:showPage}"
                 role="navigation">
                     <div class="main-title">                    
-                        <a href="/"
-                            ng-click='showPage=false'>
-                            <h1 class="text-center main-header" title="Female Entrepreneurs of the World">
-                                Female Entrepreneurs of the World
-                            </h1>
-                        </a>
-                    </div>
-                    <div class="navbar-collapse">
+                    <a href="/"
+                        ng-click='showPage=!showPage; showMenu=!showMenu; is_index()'>
+                        <h1 class="text-center main-header" title="Female Entrepreneurs of the World">
+                            Female Entrepreneurs of the World
+                        </h1>
+                    </a>
+                
+                </div>
+                <div class="fluid-container">
+
+                    <div ng-hide="!showMenu" ng-class="{'is-index':is_index()}">
                         <ul class="nav navbar-nav nav-justified">
                             <li>
                                 <span class='nav-line pull-right'>
@@ -37,7 +41,7 @@
                             <li>
                                 <ul class="nav navbar-nav nav-justified">
                                     <li>
-                                        <a ng-click='navtopath("participate")'>
+                                        <a ng-click='navtopath("participate"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 PARTICIPATE
                                                 <div class="custom-underline">
@@ -46,7 +50,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("mission")'>
+                                        <a ng-click='navtopath("mission"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 MISSION
                                                 <div class="custom-underline">
@@ -55,7 +59,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("statistics")'>
+                                        <a ng-click='navtopath("statistics"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 STATISTICS
                                                 <div class="custom-underline">
@@ -64,7 +68,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("blog")'>
+                                        <a ng-click='navtopath("blog"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 BLOG
                                                 <div class="custom-underline">
@@ -73,7 +77,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("events")'>
+                                        <a ng-click='navtopath("events"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 EVENTS
                                                 <div class="custom-underline">
@@ -82,7 +86,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("principals")'>
+                                        <a ng-click='navtopath("principals"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 PRINCIPALS
                                                 <div class="custom-underline">
@@ -91,7 +95,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click='navtopath("connect")'>
+                                        <a ng-click='navtopath("connect"); showMenu=!showMenu'>
                                             <div class="custom-underline-container nav-links">
                                                 CONNECT
                                                 <div class="custom-underline">
@@ -107,12 +111,14 @@
                             </li>
                         </ul>
                     </div>
-                        
-                <div class="fluid-container page-container"
-                    ng-class="{expanded:showPage}">
-                    <div ng-view
-                        class="page">
-                    </div> 
+                    
+                    <div class="page-container"
+                        ng-class="{expanded:showPage,'is-index':is_index()}">
+                        <div ng-view
+                            class="page">
+                        </div> 
+                    </div>
+                    
                 </div>
             </nav>            
         </div>

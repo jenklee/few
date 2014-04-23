@@ -803,8 +803,17 @@ p.continue-text {
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 @media(max-width:767px){
+
     .page-container {
-        top: 500px;
+        top: 0px;
+    }
+    
+    .page-container.expanded {
+        top: 0px;
+    }
+    
+    .page-container.is-index.expanded {
+        top: 416px;
     }
     
     .view-bottom-spacer {
@@ -860,6 +869,7 @@ p.continue-text {
         line-height: 21px;
         font-size: 16px;
     }
+    
 }
 
 /* Medium devices (desktops, 992px and up) */

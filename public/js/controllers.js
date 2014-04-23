@@ -5,6 +5,10 @@
 angular.module('few.controllers', []).
   controller('MainCtrl', ["$scope", "$rootScope", "$http", "$routeParams", "$location", "$timeout", "$log",  function($scope, $rootScope, $http, $routeParams, $location, $timeout, $log) {
 		
+		$scope.is_index = function() {
+			return $location.path() === '/';
+		}
+		
 		function endsWith(str, suffix) {
 		    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 		}
@@ -24,7 +28,13 @@ angular.module('few.controllers', []).
 							|| endsWith(next, 'connect') ))
 			{
 				$scope.showPage = true;
+				$scope.showMenu = false;
 			}
+			else {
+				$scope.showPage = true;
+				$scope.showMenu = true;
+			}
+
 		});
 		
 		$scope.navtopath = function(path) {
@@ -43,6 +53,9 @@ angular.module('few.controllers', []).
 				$scope.showPage = true;
 				$location.path(path);
 			}
+			
+			$scope.showMenu = $scope.showPage;
+			
 		}
 		
 		$http.get('api/members').

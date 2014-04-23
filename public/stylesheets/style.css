@@ -677,7 +677,13 @@ p.continue-text {
 /* No media query since this is the default in Bootstrap */
 @media (max-width: 767px) {
   .page-container {
-    top: 500px;
+    top: 0px;
+  }
+  .page-container.expanded {
+    top: 0px;
+  }
+  .page-container.is-index.expanded {
+    top: 416px;
   }
   .view-bottom-spacer {
     min-height: 550px;
