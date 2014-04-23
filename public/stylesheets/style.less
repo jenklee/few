@@ -817,7 +817,7 @@ p.continue-text {
     }
     
     .view-bottom-spacer {
-        min-height: 550px;
+        min-height: 50px;
     }
     
     .nav-line {
@@ -831,6 +831,12 @@ p.continue-text {
     .center-column,
     .right-column {
         margin-top: 25px;
+    }
+    
+    .center-column,
+    .left-column,
+    .right-column {
+        float: left;
     }
 
 }
@@ -852,11 +858,17 @@ p.continue-text {
     }
     
     .center-column,
+    .right-column {
+        margin-top: 25px;
+    }
+    
+    .center-column,
     .left-column,
     .right-column {
         margin-left: auto;
         margin-right: auto;
-        float: none !important;
+        clear: both;
+        float: none;
     }
     
     
@@ -878,8 +890,13 @@ p.continue-text {
         font-size: 11px;
     }
     
+    .center-column,
+    .right-column {
+        margin-top: 0px;
+    }
+    
     .left-column {
-        float: right !important;
+        float: right;
     }
     
     .right-column {

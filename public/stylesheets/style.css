@@ -686,7 +686,7 @@ p.continue-text {
     top: 416px;
   }
   .view-bottom-spacer {
-    min-height: 550px;
+    min-height: 50px;
   }
   .nav-line {
     width: 100%;
@@ -697,6 +697,11 @@ p.continue-text {
   .center-column,
   .right-column {
     margin-top: 25px;
+  }
+  .center-column,
+  .left-column,
+  .right-column {
+    float: left;
   }
 }
 /* Small devices (tablets, 768px and up) */
@@ -711,11 +716,16 @@ p.continue-text {
     min-height: 550px;
   }
   .center-column,
+  .right-column {
+    margin-top: 25px;
+  }
+  .center-column,
   .left-column,
   .right-column {
     margin-left: auto;
     margin-right: auto;
-    float: none !important;
+    clear: both;
+    float: none;
   }
   .text-overlay p.quote {
     line-height: 21px;
@@ -731,8 +741,12 @@ p.continue-text {
     line-height: 14px;
     font-size: 11px;
   }
+  .center-column,
+  .right-column {
+    margin-top: 0px;
+  }
   .left-column {
-    float: right !important;
+    float: right;
   }
   .right-column {
     float: left;
