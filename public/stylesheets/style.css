@@ -311,6 +311,12 @@ a .nav-links:visited {
   color: #6600FF;
   font-weight: 400;
 }
+.member-company-link:visited {
+  color: #6600FF;
+}
+.member-company-link:hover {
+  color: gray !important;
+}
 .member-address {
   padding-bottom: 20px;
 }
