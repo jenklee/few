@@ -99,6 +99,9 @@ directive('appVersion', ['version', function(version) {
 								
 				var latlng = new google.maps.LatLng(member.place.geometry.location.lat, member.place.geometry.location.lng);
 				var address = (member.place.vicinity !== undefined)? member.place.vicinity : member.place.name;
+				var companydescription = (member.companydescription === undefined)? "" : member.companydescription;
+				var companyurl = (member.companyurl === undefined)? "" : member.companyurl;
+				
 				
 				var pinColor = "8C92FF";
 			    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
@@ -142,10 +145,10 @@ directive('appVersion', ['version', function(version) {
 									+ address 
 									+ '</div><div>'									
 									+ '<a class="member-company-link" href="' 
-									+ member.companyurl + '" rel="nofollow">'
+									+ companyurl + '" rel="nofollow">'
 									+ member.companyname 
 									+ '</a></div><div class="company-description">'
-									+ member.companydescription 									
+									+ companydescription 									
 									+ '</div><div class="joined-timestamp">'
 									+ 'Joined ' + member_joined 
 									+ '</div';
@@ -237,4 +240,22 @@ directive('appVersion', ['version', function(version) {
          capitalize(scope[attrs.ngModel]);  // capitalize initial value
      }
    };
+})
+.directive('textareaMaxLength', function() {
+  return {
+    require: 'ngModel',
+    link: function (scope, element, attrs, modelCtrl) {
+      var maxlength = Number(attrs.textareaMaxLength);
+      function fromUser(text) {
+          if (text.length > maxlength) {
+            var transformedInput = text.substring(0, maxlength);
+            modelCtrl.$setViewValue(transformedInput);
+            modelCtrl.$render();
+            return transformedInput;
+          } 
+          return text;
+      }
+      modelCtrl.$parsers.push(fromUser);
+    }
+  }; 
 });
