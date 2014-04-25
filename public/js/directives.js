@@ -101,6 +101,7 @@ directive('appVersion', ['version', function(version) {
 				var address = (member.place.vicinity !== undefined)? member.place.vicinity : member.place.name;
 				var companydescription = (member.companydescription === undefined)? "" : member.companydescription;
 				var companyurl = (member.companyurl === undefined)? "" : member.companyurl;
+				var role = (member.role === undefined)? "" : member.role;
 				
 				
 				var pinColor = "8C92FF";
@@ -140,7 +141,7 @@ directive('appVersion', ['version', function(version) {
 				var member_info = '<div class="member-name">' 
 									+ member.firstname + " " + member.lastname 
 									+ '</div><div>'
-									+ member.role
+									+ role
 									+ '</div><div class="member-address">'
 									+ address 
 									+ '</div><div>'									
@@ -238,6 +239,21 @@ directive('appVersion', ['version', function(version) {
          }
          modelCtrl.$parsers.push(capitalize);
          capitalize(scope[attrs.ngModel]);  // capitalize initial value
+     }
+   };
+})
+.directive('prependHttp', function() {
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+
+		element.focus(function(){
+			if (!modelCtrl.$viewValue) {
+					modelCtrl.$viewValue = "http://";
+					modelCtrl.$render();
+		    }
+		});
+		
      }
    };
 })

@@ -43,7 +43,7 @@
             <div class="right-column">
                 <div class="stat-header">{{founders.length}} Startups Founded by Women</div>
                 <ul class="list-unstyled">
-                    <li ng-repeat="founder in founders"
+                    <li ng-repeat="founder in founders | unique: 'companyname'"
                         class="stat-list">
                         <a ng-href="{{founder.companyurl}}" target="_blank">
                             <div>{{founder.companyname}}</div>
