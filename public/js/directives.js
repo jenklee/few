@@ -145,7 +145,7 @@ directive('appVersion', ['version', function(version) {
 									+ address 
 									+ '</div><div>'									
 									+ '<a class="member-company-link" href="' 
-									+ companyurl + '" rel="nofollow">'
+									+ companyurl + '" rel="nofollow" target="_blank">'
 									+ member.companyname 
 									+ '</a></div><div class="company-description">'
 									+ companydescription 									

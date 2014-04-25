@@ -9,12 +9,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var extend = require('node.extend');
 var api = require('./api/api');
+var config = require('./config')
+
+//var db_config = config.mongodb.dev;
+var db_config = config.mongodb.prod;
 
 // Start prod db
-//mongodb://nodejitsu_jenklee:cemt3n60di86l5qln8hi69pbgv@ds029950.mongolab.com:29950/nodejitsu_jenklee_nodejitsudb3524258304
-//var mongo = require('mongoskin');
 var mongojs = require('mongojs');
-var db = mongojs("nodejitsu_jenklee:cemt3n60di86l5qln8hi69pbgv@ds029950.mongolab.com:29950/nodejitsu_jenklee_nodejitsudb3524258304");
+var db = mongojs(db_config.user + ":" + db_config.password + "@" + db_config.db_name);
+
 ObjectID = require('mongodb').ObjectID
 //End Prod db
 
