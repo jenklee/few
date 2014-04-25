@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var extend = require('node.extend');
 var api = require('./api/api');
-var config = require('./config')
+var config = require('./config');
 
 //var db_config = config.mongodb.dev;
 var db_config = config.mongodb.prod;
