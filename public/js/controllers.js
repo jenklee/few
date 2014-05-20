@@ -38,6 +38,13 @@ angular.module('few.controllers', []).
 		});
 		
 		$scope.navtopath = function(path) {
+			
+			//if no page change just toggle the curtain
+			if("/"+ path === $location.path()) {
+				$scope.showPage = !$scope.showPage;
+				return;
+			}
+			
 			if(path === '/' && $scope.showPage){
 				$scope.showPage = false;
 				$location.path(path);
